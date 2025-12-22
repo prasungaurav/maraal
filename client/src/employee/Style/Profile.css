@@ -1,0 +1,111 @@
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 450px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #4f46e5;
+  color: white;
+}
+
+.avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.profile-name h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.profile-name p {
+  margin: 2px 0 0 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.profile-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.profile-row span {
+  font-weight: 600;
+  color: #374151;
+}
+
+.profile-row p, .profile-row input {
+  font-size: 15px;
+  color: #111827;
+  text-align: right;
+  width: 60%;
+  padding-left: 10px;
+}
+
+.profile-row input {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+
+.profile-footer {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.edit {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.btn.save {
+  background-color: #10b981;
+  color: white;
+}
+
+.btn.cancel {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}

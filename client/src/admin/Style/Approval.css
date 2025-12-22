@@ -1,0 +1,316 @@
+/* --- Global Variables & Base Styles --- */
+:root {
+    --color-primary: #1e40af;
+    --color-secondary: #059669;
+    --color-danger: #dc2626;
+    --color-warning: #d97706;
+    --color-success: #059669;
+    --color-background: #f4f7f9;
+    --color-card-bg: #ffffff;
+    --color-border: #e5e7eb;
+    --color-text-light: #6b7280;
+    --color-text-dark: #1f2937;
+    --box-shadow-panel: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    --border-radius-base: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.approval-page {
+    margin-top:-6vh;
+    padding: 24px; /* Optimized outer padding */
+    background: var(--color-background);
+    min-height: 94vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--color-text-dark);
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--color-text-dark);
+}
+
+/* --- Layout Grid --- */
+.approval-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Fixed sidebar, flexible content */
+    gap: 24px;
+    align-items: start;
+}
+
+.column-1, .column-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Panel Styling --- */
+.panel {
+    background: var(--color-card-bg);
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--box-shadow-panel);
+    padding: 20px; /* Standard internal padding */
+}
+
+.panel h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex; 
+    gap: 10px;
+    align-items: center;
+    margin: 30px;
+    margin-bottom: -10px;
+    color: var(--color-primary);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+
+/* --- Summary Stats (Sidebar) --- */
+.summary-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding:20px;
+}
+
+.stat-card {
+    background: #fcfcfc;
+    padding: 14px 16px;
+    margin: 0px  10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f1f5f9;
+}
+
+.stat-card span {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card b {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-top: 4px;
+    color: var(--color-text-dark);
+}
+
+/* Status Indicators for Stats */
+.stat-card.status-pending { border-left: 4px solid var(--color-warning); }
+.stat-card.status-approved { border-left: 4px solid var(--color-success); }
+.stat-card.status-rejected { border-left: 4px solid var(--color-danger); }
+.stat-card.status-total { border-left: 4px solid var(--color-primary); }
+
+/* --- Request Cards (Main Area) --- */
+.request-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+     margin: 12px 24px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.request-card:last-child {
+    margin-bottom: 0;
+}
+
+.request-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: #d1d5db;
+}
+
+/* Status-specific card accents */
+.request-card.status-approved { border-left: 4px solid var(--color-success); background: #fafffc; }
+.request-card.status-rejected { border-left: 4px solid var(--color-danger); background: #fffafa; }
+.request-card.status-pending { border-left: 4px solid var(--color-warning); }
+
+/* Request Details Alignment */
+.request-details {
+    flex: 1;
+}
+
+.employee-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    display: block;
+}
+
+.request-info {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.reason {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #f8fafc;
+    border-radius: 4px;
+    font-style: italic;
+}
+
+/* Status Column */
+.status-col {
+    padding: 0 30px;
+    min-width: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+.status-badge {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.pending { background: #fef3c7; color: var(--color-warning); }
+.status-badge.approved { background: #dcfce7; color: var(--color-success); }
+.status-badge.rejected { background: #fee2e2; color: var(--color-danger); }
+
+/* --- Action Buttons --- */
+.request-actions {
+    display: flex;
+    gap: 8px;
+    min-width: 220px;
+    justify-content: flex-end;
+}
+
+.btn-action {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid transparent;
+    transition: transform 0.1s;
+}
+
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+.btn-approve {
+    background: var(--color-success);
+    color: white;
+}
+
+.btn-reject {
+    background: #ffffff;
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger);
+}
+
+.action-taken-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1024px) {
+    .approval-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .column-1 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .request-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .status-col {
+        padding: 0;
+        justify-content: flex-start;
+    }
+    
+    .request-actions {
+        width: 100%;
+        justify-content: stretch;
+    }
+    
+    .btn-action {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/* Completed Requests Header */
+.completed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+/* Toggle Button */
+.toggle-btn {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--text-dark);
+    min-width: 100px;
+    padding: 6px 14px;
+    margin-right: 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.toggle-btn:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Active / Click */
+.toggle-btn:active {
+    transform: scale(0.96);
+}
+
+/* Focus (Accessibility) */
+.toggle-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+}
+

@@ -1,0 +1,122 @@
+* {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.nav-root {
+  width: 100%;
+  height: 76px;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 32px;
+  box-sizing: border-box;
+  z-index: 9999;
+
+  background: linear-gradient(90deg, #135ccf, #1f72e6);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.4);
+}
+
+/* logo */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+.nav-logo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* pills menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.15);
+}
+.nav-link {
+  text-decoration: none;
+  color: #e5edff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+.nav-link.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.35);
+}
+
+/* profile */
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+.nav-profile:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.7);
+}
+.profile-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+.profile-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5edff;
+}
+
+/* dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: 80px;
+  right: 32px;
+  width: 190px;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 8px 0;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.7);
+}
+.nav-dropdown p {
+  margin: 0;
+  padding: 10px 18px;
+  font-size: 13.5px;
+  color: #e5edff;
+  cursor: pointer;
+}
+.nav-dropdown p:hover {
+  background: rgba(148, 163, 184, 0.28);
+}
+.logout {
+  color: #f97373;
+}
+
+/* Navbar fixed hai, isliye page content ko neeche shift karna zaruri */
+.page-container {
+  padding-top: 90px;   /* Navbar height + gap */
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+}

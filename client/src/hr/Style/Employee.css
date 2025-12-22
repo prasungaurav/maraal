@@ -1,0 +1,219 @@
+/* MAIN PAGE */
+.employee-page {
+  margin-top: -12vh;
+  padding: 110px 30px 40px;
+  font-family: "Inter", sans-serif;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.employee-header {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-bottom: 25px;
+}
+
+.emp-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.employee-filters {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.employee-filters input,
+.employee-filters select {
+  padding: 10px 12px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.employee-filters input:focus,
+.employee-filters select:focus {
+  border-color: #2563eb;
+  background: white;
+}
+
+/* ADD BUTTON */
+.add-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 11px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.add-btn:hover {
+  background: #1d4ed8;
+}
+
+/* EMPLOYEE GRID */
+.employee-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.smooth-card {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: 0.25s ease;
+}
+
+.smooth-card:hover {
+  transform: translateY(-4px);
+}
+
+/* IMAGE */
+.emp-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+/* NAME + POSITION */
+.emp-position {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 4px 0;
+}
+
+/* DEPARTMENT TAG */
+.emp-dept {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+/* BUTTON */
+.view-btn {
+  background: #2563eb;
+  color: white;
+  padding: 9px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.25s;
+}
+.view-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ===============================
+      MODAL SYSTEM
+=============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4000;
+  animation: fadeIn 0.25s;
+}
+
+.modal-box {
+  width: 360px;
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+  animation: slideUp 0.25s ease;
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Inputs */
+.modal-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 12px;
+}
+
+.modal-save {
+  background: #2563eb;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+  transition: 0.2s;
+}
+.modal-save:hover {
+  background: #1d4ed8;
+}
+
+/* PROFILE MODAL */
+.profile-modal-content {
+  text-align: center;
+}
+
+.profile-modal-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.dept-tag {
+  margin-top: 6px;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #2563eb;
+  font-size: 12px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

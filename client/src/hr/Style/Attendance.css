@@ -1,0 +1,165 @@
+.att-page {
+  margin-top: -12vh;
+  padding: 110px 30px 40px;
+  background: #f5f7fb;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
+
+/* HEADER CARD */
+.att-header-card {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.att-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.att-sub {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* FILTERS */
+.att-filters {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* INPUT */
+.att-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: 0.25s;
+}
+
+.att-input input,
+.att-input select {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  width: 140px;
+}
+
+.att-input:hover,
+.att-input:focus-within {
+  border-color: #2563eb;
+  background: #eef4ff;
+}
+
+/* TABLE CARD */
+.att-table-card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* TABLE */
+.att-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.att-table th {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #6b7280;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.att-table td {
+  padding: 14px 10px;
+  font-size: 15px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* ROW HOVER */
+.att-table tr:hover {
+  background: #f8fafc;
+}
+
+/* STATUS BADGES - ADVANCED */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.present {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.absent {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-badge.late {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+
+.status-badge.on-leave {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* ACTION BUTTONS */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  background: #eef2ff;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.action-btn:hover {
+  background: #dbe0ff;
+}
+
+.action-btn.view {
+  color: #2563eb;
+}
+
+.action-btn.edit {
+  color: #f59e0b;
+}
+
+/* Smooth Cards Reuse */
+.smooth-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.25s ease;
+  border-radius: 18px;
+}
+
+.smooth-card:hover {
+  transform: translateY(-3px);
+}

@@ -1,0 +1,226 @@
+/* Header.css - Matches Dashboard Professional Theme */
+
+:root {
+    --header-bg: #FFFFFF;
+    --text-dark: #111827;        /* Almost Black */
+    --text-gray: #6B7280;        /* Cool Gray */
+    --primary-color: #4F46E5;    /* Indigo */
+    --nav-hover-bg: #F3F4F6;     /* Light Gray Hover */
+}
+
+.top-dashboard-header {
+    /* Positioning */
+    width: 100%; 
+    height: 60px; 
+    background-color: var(--header-bg); 
+    
+    /* Fixed at top */
+    position: fixed;
+    top: 0; 
+    left: 0;
+    z-index: 1000;
+    
+    /* Styling */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle modern shadow */
+    padding: 0 40px; /* Matches Dashboard side padding */
+    box-sizing: border-box;
+    
+    /* Layout */
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; /* Pushes Nav to Left, User to Right */
+}
+
+/* --- Left Section (Navigation) --- */
+.main-nav-links {
+    display: flex;
+    gap: 10px; /* Tighter gap for pill buttons */
+}
+
+.main-nav-links .nav-item {
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-gray);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.main-nav-links .nav-item:hover {
+    color: var(--text-dark);
+    background-color: var(--nav-hover-bg);
+}
+
+.main-nav-links .nav-item.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+}
+
+/* --- Right Section (Info & User) --- */
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.date {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-variant-numeric: tabular-nums; /* Prevents jitter when seconds change */
+}
+
+.user-profile-widget {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 5px 10px 5px 5px; /* Extra right padding */
+    border-radius: 30px;
+    transition: background-color 0.2s;
+}
+
+.user-profile-widget:hover {
+    background-color: var(--nav-hover-bg);
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, var(--primary-color), #4338CA);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 2px solid #EEF2FF; /* Ring effect */
+}
+
+/* --- PROFILE WIDGET UPDATES --- */
+
+.user-profile-widget {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 12px 6px 6px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+    position: relative; /* Anchor for absolute dropdown */
+    border: 1px solid transparent;
+}
+
+.user-profile-widget:hover, 
+.user-profile-widget.active {
+    background-color: var(--nav-hover-bg);
+    border-color: #E2E8F0;
+}
+
+.profile-arrow {
+    color: var(--text-gray);
+    transition: transform 0.2s ease;
+}
+
+.profile-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+/* --- DROPDOWN MENU --- */
+
+.profile-dropdown {
+    position: absolute;
+    top: 50px; /* Push it down below the header */
+    right: 0;
+    width: 220px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E2E8F0;
+    padding: 8px;
+    z-index: 2000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dropdown User Info Header */
+.dropdown-header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 12px;
+}
+
+.d-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.d-role {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    margin-top: 2px;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background-color: var(--nav-hover-bg);
+    color: var(--primary-color);
+}
+
+.dropdown-item svg {
+    color: var(--text-gray);
+}
+
+.dropdown-item:hover svg {
+    color: var(--primary-color);
+}
+
+/* Divider Line */
+.dropdown-divider {
+    height: 1px;
+    background-color: #E2E8F0;
+    margin: 6px 0;
+}
+
+/* Logout Specific Style */
+.dropdown-item.logout {
+    color: #EF4444; /* Red */
+}
+
+.dropdown-item.logout svg {
+    color: #EF4444;
+}
+
+.dropdown-item.logout:hover {
+    background-color: #FEF2F2;
+}

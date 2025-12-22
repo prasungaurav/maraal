@@ -1,0 +1,300 @@
+:root {
+  --bg: #f6f8fc;
+  --card: #ffffff;
+  --border: #e5e9f2;
+  --text: #1e293b;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-light: #eff6ff;
+  --radius: 12px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+.employee-export-page {
+  padding: 1.5rem;
+  background: var(--bg);
+  margin-top: -6vh;
+  min-height: 94vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ================== UPDATED HEADER & PICKER DESIGN ================== */
+.export-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.export-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.export-header p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* Interior Design for Month Picker */
+.month-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card);
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.month-picker:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.month-picker svg {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+.month-picker input[type="month"] {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+/* Customizing the native calendar icon */
+.month-picker input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.4) sepia(1) saturate(5) hue-rotate(175deg); /* Colors it closer to primary */
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.month-picker input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* ================== GRID & CARDS ================== */
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.employee-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.employee-card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+}
+
+.employee-top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.employee-top h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.employee-top p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.1rem;
+}
+
+/* ================== STATS DESIGN ================== */
+.employee-stats {
+  display: flex;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+}
+
+.employee-stats > div {
+  text-align: center;
+  flex: 1;
+}
+
+.employee-stats strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.employee-stats span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--muted);
+}
+
+/* ================== BUTTONS ================== */
+.employee-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.65rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn.ghost {
+  background: #f1f5f9;
+  color: var(--text);
+}
+
+.btn.ghost:hover {
+  background: #e2e8f0;
+}
+
+/* ================== MODAL & PRINT ================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 850px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+/* TABLE STYLING */
+.print-table th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.print-table td {
+  font-size: 0.9rem;
+}
+
+/* PRINT ONLY */
+.print-only {
+  display: none;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .modal-overlay { background: none !important; position: static !important; padding: 0 !important; }
+  .modal-content { box-shadow: none !important; border: none !important; width: 100% !important; max-height: none !important; overflow: visible !important; }
+  .print-area { padding: 0 !important; }
+}
+
+@media (max-width: 768px) {
+  .export-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .month-picker {
+    width: 100%;
+    justify-content: center;
+  }
+}

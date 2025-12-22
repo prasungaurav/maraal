@@ -1,0 +1,1214 @@
+/* EmployeeDashboard.css - Professional Modern Theme */
+
+:root {
+    /* PROFESSIONAL COLOR PALETTE */
+    --primary-color: #2e7fcb;    /* Modern Indigo */
+    --primary-hover: #2e7fcb;    /* Darker Indigo for hover */
+    --secondary-accent: #2e7fcb; /* Soft Indigo */
+    
+    --text-dark: #111827;        /* Almost black, softer */
+    --text-gray: #6B7280;        /* Cool gray */
+    --text-light: #9CA3AF;
+    
+    --bg-light: #F3F4F6;         /* Cool gray background */
+    --card-bg: #FFFFFF;
+    --border-color: #E5E7EB;     /* Subtle border */
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--bg-light);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+}
+
+.dashboard-page-wrapper {
+    padding-top: 50px; 
+    padding: 0 40px 40px 40px; /* More breathing room */
+    box-sizing: border-box;
+    height: 88vh;
+
+}
+
+/* ================================================= */
+/* MAIN GRID LAYOUT */
+/* ================================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1.3fr; 
+    gap: 30px; /* Increased gap */
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: start;
+    
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px; /* Smooth corners */
+    box-shadow: var(--shadow-md); /* Professional shadow */
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    letter-spacing: -0.025em;
+}
+
+/* ================================================= */
+/* COLUMN 1: ATTENDANCE CARD (Fine-Tuned Size)       */
+/* ================================================= */
+
+.attendance-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Slightly reduced padding */
+    padding: 22px; 
+}
+
+.attendance-ring-container {
+    position: relative;
+    width: 135px;  /* Reduced from 140px */
+    height: 135px; 
+    margin: 12px 0; /* Tighter margin */
+}
+
+.working-hours-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.working-hours-text span {
+    font-size: 1.0rem; /* Reduced from 1.6rem */
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.working-hours-text p {
+    font-size: 0.68rem; 
+    color: var(--text-gray);
+    margin: 3px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Fix for Attendance Ring Cutting */
+
+.attendance-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    overflow: visible; /* <--- KEY FIX: Allows ring to go outside box */
+}
+
+.ring-bg {
+    fill: none;
+    stroke: #F3F4F6;
+    stroke-width: 3; /* Reduced from 4/5 to fit better */
+}
+
+.ring-progress {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 3; /* Reduced from 4/5 to fit better */
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.8s ease;
+}
+.punch-time-box {
+    display: flex;
+    gap: 10px;      /* Reduced gap */
+    margin: 16px 0; /* Reduced margin */
+    width: 100%;
+    justify-content: center;
+}
+
+.time-in, .time-out {
+    background-color: #F9FAFB;
+    border: 1px solid var(--border-color);
+    padding: 9px 18px; /* Slightly tighter padding */
+    border-radius: 12px;
+    text-align: center;
+    flex: 1;
+}
+
+.time-in span, .time-out span {
+    font-size: 1rem; 
+    font-weight: 700;
+    color: var(--text-dark);
+    display: block;
+}
+
+.time-in p, .time-out p {
+    font-size: 0.68rem;
+    margin: 2px 0 0 0;
+    color: var(--text-gray);
+    font-weight: 600;
+}
+
+/* --- Punch Button --- */
+/* --- Punch Button --- */
+.punch-button {
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); /* Blue gradient */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;       /* Slightly taller */
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;           /* Full width */
+    margin-top: 6px;
+    font-size: 0.95rem;    /* Slightly bigger text */
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.punch-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(59, 130, 246, 0.4);
+}
+
+/* --- Work Type Selection Buttons --- */
+.work-type-selection {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+/* WFH Button */
+.work-type-button.wfh {
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); /* Blue gradient */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.work-type-button.wfh:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);
+}
+
+/* WFO Button */
+.work-type-button.wfo {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); /* Orange gradient */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.work-type-button.wfo:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(245, 158, 11, 0.4);
+}
+
+/* --- Icon Alignment for Buttons --- */
+.work-type-button svg {
+    vertical-align: middle;
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 500px) {
+    .work-type-selection {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .work-type-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ================================================= */
+/* HISTORY SECTION (Fine-Tuned Size)                 */
+/* ================================================= */
+
+/* --- History Section --- */
+.history-section {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.history-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+/* --- Header Row --- */
+.history-card-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* Date wider, IN/OUT equal */
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #6B7280;
+  border-bottom: 2px solid #E5E7EB;
+  font-size: 0.85rem;
+}
+
+/* Header Labels */
+.history-label {
+  display: flex;
+  align-items: center;
+}
+
+/* --- History Cards --- */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between rows */
+  margin-top: 12px;
+}
+
+.history-card {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.history-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* --- Card Body Values --- */
+.history-card-body {
+  display: contents; /* Use the same grid as card */
+}
+
+.history-value {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: #111827;
+  font-size: 0.9rem;
+}
+
+/* ================================================= */
+/* COLUMN 2: WELCOME & HOURGLASS (Professional Blue) */
+/* ================================================= */
+/* Wrapper to stack the two white boxes */
+.col-2-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;  /* <--- THIS IS THE GAP CONTROL */
+    height: 100%;
+}
+.welcome-card {
+    display: flex;
+    flex-direction: column;
+    height: 50vh; /* Fixed height from your previous request */
+    justify-content: center;
+}
+
+.welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.welcome-header h1 {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin: 0 0 5px 0;
+}
+
+.welcome-header p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-gray);
+}
+
+.welcome-header .good-day-text {
+    font-size: 0.9rem;
+    color: #2e7fcb; /* Primary Blue */
+    font-weight: 600;
+}
+
+/* --- ANIMATED HOURGLASS (Blue Version) --- */
+
+/* Container */
+.illustration-box {
+    width: 100px;
+    height: 100px;
+    background-color: #EEF2FF; /* Light Blue Background */
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid #E0E7FF; /* Light Blue Border */
+}
+
+/* The Glass Shape */
+.hourglass {
+    width: 40px;
+    height: 60px;
+    position: relative;
+    border-top: 3px solid #9CA3AF;    /* Cool Gray */
+    border-bottom: 3px solid #9CA3AF; /* Cool Gray */
+    background: 
+        conic-gradient(from 135deg at 50% 50%, transparent 270deg, #E5E7EB 0) 
+        calc(50% + 20px) 0 / 40px 30px no-repeat,
+        conic-gradient(from -45deg at 50% 50%, transparent 270deg, #E5E7EB 0) 
+        50% 0 / 40px 30px no-repeat;
+    clip-path: polygon(0 0, 100% 0, 50% 50%, 100% 100%, 0 100%, 50% 50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid #D1D5DB; /* Gray border */
+    box-sizing: content-box;
+}
+
+/* 1. Sand Top (Blue) */
+.sand-top {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 34px; 
+    height: 30px; 
+    background-color: #2e7fcb; /* Primary Blue */
+    transform: translateX(-50%);
+    animation: drainSand 3s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    z-index: 1;
+}
+
+/* 2. Sand Stream (Blue) */
+.sand-stream {
+    position: absolute;
+    left: 50%;
+    top: 30px; 
+    width: 2px;
+    height: 30px; 
+    background-color: #2e7fcb; /* Primary Blue */
+    transform: translateX(-50%);
+    z-index: 1;
+    animation: flowStream 3s linear infinite;
+}
+
+/* 3. Sand Bottom (Blue) */
+.sand-bottom {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 34px;
+    height: 30px;
+    background-color: #2e7fcb; /* Primary Blue */
+    transform: translateX(-50%);
+    animation: fillSand 3s linear infinite;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+/* Keyframes (Required for animation) */
+@keyframes drainSand {
+    0% { height: 28px; top: 1px; }
+    90% { height: 0px; top: 29px; }
+    100% { height: 0px; top: 29px; }
+}
+
+@keyframes flowStream {
+    0% { height: 0; opacity: 1; }
+    10% { height: 30px; opacity: 1; }
+    90% { height: 30px; opacity: 1; }
+    100% { height: 0; opacity: 0; }
+}
+
+@keyframes fillSand {
+    0% { height: 0px; }
+    10% { height: 0px; }
+    90% { height: 28px; }
+    100% { height: 28px; }
+}
+/* --- QUICK STATUS GRID (Refined) --- */
+
+.section-subtitle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.quick-status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Card Styling */
+.status-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px; /* Softer, modern corners */
+    gap: 12px;
+    
+    /* Anchor Reset */
+    text-decoration: none; 
+    color: inherit;
+    background-color: #FFFFFF;
+    
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth animation */
+    position: relative;
+}
+
+/* Hover Effect - Professional Lift & Glow */
+.status-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.15); /* Soft indigo shadow */
+    transform: translateY(-3px);
+}
+
+/* --- ACTIVE STATE (When clicked/toggled) --- */
+.status-item.active-box {
+    border-color: var(--primary-color);
+    background-color: #EEF2FF; /* Light Indigo BG */
+    box-shadow: inset 0 0 0 1px var(--primary-color); /* Inner focus ring */
+}
+
+/* Icons */
+.status-item svg {
+    color:#2e7fcb;
+    background-color: #F5F3FF; /* Very light purple/indigo */
+    padding: 9px;
+    border-radius: 10px;
+    min-width: 38px;
+    min-height: 38px;
+    transition: background-color 0.2s;
+}
+
+.status-item:hover svg {
+    background-color: #EEF2FF;
+}
+
+/* Text Typography */
+.status-item p {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 2px 0;
+}
+
+.status-item span {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    line-height: 1.3;
+    font-weight: 500;
+    display: block;
+}
+
+/* --- LEAVE PREVIEW SECTION (Appears above grid) --- */
+
+.leave-preview-box {
+    background-color: #F8FAFC;
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px; /* Space before the grid starts */
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 5px;
+}
+
+.preview-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.close-preview {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-gray);
+    padding: 2px;
+}
+
+.close-preview:hover { color: #EF4444; }
+
+/* Preview Table */
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.preview-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.preview-table td {
+    font-size: 0.8rem;
+    padding: 6px 0;
+    color: var(--text-dark);
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.preview-table tr:last-child td { border-bottom: none; }
+
+.p-type { font-weight: 600; color: var(--primary-color); }
+
+/* Preview Badges */
+.preview-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+.p-badge-success { background: #ECFDF5; color: #059669; }
+.p-badge-warning { background: #FFFBEB; color: #D97706; }
+.p-badge-danger { background: #FEF2F2; color: #DC2626; }
+
+/* Footer Link */
+.preview-footer {
+    text-align: right;
+    margin-top: 8px;
+}
+.preview-footer span {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 600;
+}
+.preview-footer span:hover { text-decoration: underline; }
+
+/* Highlight active grid item */
+.status-item.active-box {
+    border-color: var(--primary-color);
+    background-color: #EEF2FF;
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+}
+
+/* Animation */
+.slide-in-top {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* --- MARAAL BRANDING STYLES --- */
+
+.maraal-logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.maraal-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--primary-color), #2e7fcb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.maraal-tagline {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+/* ================================================= */
+/* COLUMN 3: CALENDAR (FIXED GRID)                   */
+/* ================================================= */
+
+
+
+.calendar-header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.month-year {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Navigation */
+.calendar-nav {
+    display: flex;
+    gap: 6px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 42px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-gray);
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* GRID FIX */
+.calendar-grid-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 36px; /* 🔥 SAME HEIGHT FOR ALL ROWS */
+    gap: 8px;
+    text-align: center;
+}
+
+/* Day Headers */
+.day-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+/* Dates */
+.date-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.date-cell:hover {
+    background-color: #F3F4F6;
+}
+
+.date-cell.today {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(46, 127, 203, 0.35);
+}
+
+.calendar-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.create-place-button {
+    background: white;
+    color: var(--text-gray);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.create-place-button:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.create-place-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Leave Stats Section */
+
+.leave-stats-box {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.stats-ring-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+}
+
+.stats-count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+
+/* Fix for Annual Leaves Ring Cutting */
+
+.leave-stats-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    overflow: visible; /* <--- KEY FIX */
+}
+
+/* Ensure the Mini Rings in Cards also don't cut */
+.mini-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    overflow: visible; /* <--- KEY FIX */
+}
+
+.ring-bg { 
+    fill: none; 
+    stroke: #F3F4F6; 
+    stroke-width: 3; /* Adjusted thickness */
+}
+
+.ring-progress { 
+    fill: none; 
+    stroke-width: 3; /* Adjusted thickness */
+    stroke-linecap: round; 
+}
+
+.apply-leave-button {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.apply-leave-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .calendar-stats-card {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .calendar-stats-card {
+        display: block;
+    }
+    .welcome-card {
+        min-height: auto;
+    }
+}
+/* --- LEAVE PREVIEW SECTION (Appears above grid) --- */
+
+.leave-preview-box {
+    background-color: #F8FAFC;
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px; /* Space before the grid starts */
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 5px;
+}
+
+.preview-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.close-preview {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-gray);
+    padding: 2px;
+}
+
+.close-preview:hover { color: #EF4444; }
+
+/* Preview Table */
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.preview-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.preview-table td {
+    font-size: 0.8rem;
+    padding: 6px 0;
+    color: var(--text-dark);
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.preview-table tr:last-child td { border-bottom: none; }
+
+.p-type { font-weight: 600; color: var(--primary-color); }
+
+/* Preview Badges */
+.preview-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+.p-badge-success { background: #ECFDF5; color: #059669; }
+.p-badge-warning { background: #FFFBEB; color: #D97706; }
+.p-badge-danger { background: #FEF2F2; color: #DC2626; }
+
+/* Footer Link */
+.preview-footer {
+    text-align: right;
+    margin-top: 8px;
+}
+.preview-footer span {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 600;
+}
+.preview-footer span:hover { text-decoration: underline; }
+
+/* Highlight active grid item */
+.status-item.active-box {
+    border-color: var(--primary-color);
+    background-color: #EEF2FF;
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+}
+
+/* Animation */
+.slide-in-top {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- DASHBOARD PREVIEW SECTION (Integrated Design) --- */
+
+.dashboard-preview-box {
+    /* Changed from absolute to relative so it fits inside the flow */
+    position: relative; 
+    margin-top: 20px;    /* Gap from Hourglass */
+    margin-bottom: 20px; /* Gap from Quick Status Grid */
+    
+    /* Professional Styling */
+    background-color: #F8FAFC; /* Very light gray/blue background */
+    border: 1px solid var(--primary-color); /* Accent Border */
+    border-radius: 12px;
+    padding: 15px;
+    
+    /* Soft Shadow for depth */
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 8px;
+}
+
+.preview-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.close-preview {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-gray);
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.close-preview:hover { 
+    color: #EF4444; 
+    background-color: #FEE2E2;
+}
+
+/* Preview Table Styles */
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.preview-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+
+.preview-table td {
+    font-size: 0.8rem;
+    padding: 8px 0;
+    color: var(--text-dark);
+    border-bottom: 1px solid #F1F5F9;
+    vertical-align: middle;
+}
+
+.preview-table tr:last-child td { 
+    border-bottom: none; 
+}
+
+.p-type, .p-date { 
+    font-weight: 600; 
+    color: var(--primary-color); 
+}
+
+/* Preview Badges */
+.preview-badge {
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+}
+.p-badge-success { background: #ECFDF5; color: #059669; }
+.p-badge-warning { background: #FFFBEB; color: #D97706; }
+.p-badge-danger { background: #FEF2F2; color: #DC2626; }
+
+/* --- HOLIDAY LIST STYLES (Inside Preview) --- */
+.preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.p-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.p-list-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.p-date-box {
+    background-color: #EEF2FF; 
+    color: var(--primary-color);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    width: 40px; 
+    height: 40px; 
+    border-radius: 8px; 
+    border: 1px solid #E0E7FF;
+}
+
+.p-date-box span { font-size: 0.85rem; font-weight: 800; line-height: 1; }
+.p-date-box small { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; margin-top: 1px; }
+
+.p-info { display: flex; flex-direction: column; }
+.p-name { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+.p-day { font-size: 0.75rem; color: var(--text-gray); }
+
+/* Footer Link */
+.preview-footer {
+    text-align: right;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #E2E8F0;
+}
+
+.preview-footer span {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 700;
+    transition: opacity 0.2s;
+}
+.preview-footer span:hover { text-decoration: underline; opacity: 0.8; }
+
+/* Active Grid Item Highlight */
+.status-item.active-box {
+    border-color: var(--primary-color);
+    background-color: #EEF2FF;
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+}
+
+/* Animation */
+.slide-in-top {
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Calendar Status Colors */
+
+/* Calendar Grid Base */
+.calendar-grid-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.date-cell {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    cursor: default;
+}
+
+/* Approved Leaves - Yellow */
+.date-cell.cal-leave {
+    color: #b45309 !important; 
+    border: 1px solid #f59e0b !important;
+    border-radius: 4px;
+}
+
+/* Absent Days - Red */
+.date-cell.cal-absent {
+    color: #dc2626 !important; 
+    border: 1px solid #ef4444 !important;
+    border-radius: 4px;
+}
+
+/* Present, Holidays, and Future - No Background */
+.date-cell {
+    background-color: transparent;
+    color: #374151; /* Dark grey text */
+}
+
+/* Today Highlight */
+.date-cell.today {
+    outline: 2px solid #3b82f6;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #3b82f6;
+}
+
+.date-cell.empty {
+    visibility: hidden;
+}

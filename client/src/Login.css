@@ -1,0 +1,319 @@
+/* Full page styling */
+html, body, #root {
+  height: 100vh;
+  width: 100%;
+  padding-top: 0 !important;
+  margin: 0;
+}
+
+:root {
+  --color-primary: #4a6eff;
+  --color-primary-dark: #1d4ed8;
+  --color-text: #e9f0ff;
+  --color-subtitle: #c7d3ff;
+  --color-glass-border: rgba(255, 255, 255, 0.16);
+  --color-glass-bg: rgba(255, 255, 255, 0.13);
+}
+
+/* Wrapper styling */
+.maraal-login-wrapper {
+ 
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: -12vh;
+  background: radial-gradient(circle at 20% 20%, #1b43b3, #0f1d4a 60%, #06102f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ------------------------------- STAR FIELD BACKGROUND -------------------------------- */
+.stars {
+  position: absolute;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4a7698 100%);
+  animation: starMove 80s linear infinite;
+  opacity: 0.28;
+}
+
+@keyframes starMove {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-800px, -600px, 0); }
+}
+
+/* ------------------------------- FLOATING BLOBS -------------------------------- */
+.morph-blob {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: rgba(80, 130, 255, 0.18);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: orbFloat 14s ease-in-out infinite alternate;
+}
+
+.blob1 { top: -100px; left: -140px; }
+.blob2 { bottom: -120px; right: -120px; background: rgba(255, 255, 255, 0.10); }
+
+@keyframes orbFloat {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(40px) scale(1.12); }
+  100% { transform: translateY(-20px) scale(1); }
+}
+
+/* ------------------------------- HOLOGRAPHIC RING -------------------------------- */
+.holo-ring {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(74, 110, 255, 0.05) 0%, transparent 70%);
+  animation: spinRing 22s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spinRing {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1.04); }
+}
+
+/* ================================ GLASS LOGIN CARD ================================ */
+.login-glass-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 42px 40px;
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(25px);
+  border-radius: 28px;
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.35), inset 0 0 40px rgba(255, 255, 255, 0.05), inset 0 4px 6px rgba(255, 255, 255, 0.08);
+  text-align: center;
+  z-index: 5;
+  animation: fadeUp 0.7s ease-out;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* LOGO */
+.maraal-logo {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto 12px auto;
+  filter: drop-shadow(0px 2px 3px rgba(255, 255, 255, 0.5));
+}
+
+/* Headings */
+.erp-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text);
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.erp-subtitle {
+  color: var(--color-subtitle);
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* Error Box */
+.login-error {
+  background: rgba(255, 120, 120, 0.2);
+  border: 1px solid rgba(255, 100, 100, 0.4);
+  color: #ffbaba;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+}
+
+/* ================================ INPUTS ================================ */
+.login-form-modern {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.input-box {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.input-box input,
+.select-input-aero {
+  width: 100%;
+  padding: 14px 14px 14px 48px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #e6edff;
+  font-size: 15px;
+  appearance: none;
+  transition: 0.25s;
+  box-sizing: border-box;
+}
+
+.select-input-aero {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e6edff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 48px;
+}
+
+.input-box input::placeholder {
+  color: #b9c6ff;
+}
+
+.input-box input:focus,
+.select-input-aero:focus {
+  border-color: #4e8bff;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 12px rgba(100, 150, 255, 0.4);
+}
+
+/* ICON */
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #c7d2ff;
+  z-index: 10;
+}
+
+/* ================================ BUTTON ================================ */
+.login-btn-modern {
+  width: 80%;
+  margin: 10px auto 0 auto;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn-modern:hover {
+  background: linear-gradient(135deg, #6d89ff, #3b6df0);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(50, 100, 255, 0.4);
+}
+
+.login-btn-modern:active {
+  transform: scale(0.97);
+}
+
+.login-btn-modern:disabled {
+  cursor: not-allowed;
+  filter: brightness(0.8);
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin: auto;
+}
+
+/* Success */
+.login-btn-modern.success {
+  background: #16a34a !important;
+  color: white !important;
+}
+
+.login-btn-modern.success svg {
+  animation: pop 0.3s ease-out;
+}
+
+/* Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pop {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Footer */
+.footer-note {
+  color: #b8c6ff;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+/* Fade Up */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* ================================ INPUTS ================================ */
+.login-form-modern {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.input-box {
+  width: 80%;
+  margin: 0 auto;
+  position: relative; /* Essential for absolute positioning of icons */
+  display: flex;
+  align-items: center;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 14px 44px 14px 48px; /* Right padding (44px) added to avoid eye icon overlap */
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #e6edff;
+  font-size: 15px;
+  transition: 0.25s;
+  box-sizing: border-box;
+}
+
+/* Left Icon (Mail/Lock) */
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #c7d2ff;
+  pointer-events: none; /* Icon shouldn't block clicks */
+}
+
+/* Right Icon (Eye Toggle) */
+.password-toggle-icon {
+  position: absolute;
+  right: 14px; /* Placed inside input on the right */
+  cursor: pointer;
+  color: #c7d2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.password-toggle-icon:hover {
+  color: #ffffff;
+}
+
+.input-box input:focus {
+  border-color: #4e8bff;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 12px rgba(100, 150, 255, 0.4);
+  outline: none;
+}

@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../Style/Header.css";
-import {
-  User,
-  Settings,
-  LogOut,
-  ChevronDown
-} from "lucide-react";
+import "../Style/Header.css"; // use HR navbar css
 import { useAuth } from "../../App";
 
 axios.defaults.withCredentials = true;
@@ -17,12 +11,10 @@ function AdminHeader() {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
-  // Define API Base URL from environment variables
   const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [user, setUser] = useState(null);
-
+  const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
   /* ===============================
@@ -31,7 +23,6 @@ function AdminHeader() {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        // Updated URL using API_BASE_URL
         const res = await axios.get(
           `${API_BASE_URL}/api/admin/header/me`
         );
@@ -48,9 +39,7 @@ function AdminHeader() {
       }
     };
 
-    if (API_BASE_URL) {
-      fetchAdmin();
-    }
+    if (API_BASE_URL) fetchAdmin();
   }, [navigate, API_BASE_URL]);
 
   /* ===============================
@@ -59,7 +48,7 @@ function AdminHeader() {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setIsProfileOpen(false);
+        setOpenDropdown(false);
       }
     };
 
@@ -68,91 +57,69 @@ function AdminHeader() {
       document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const getActiveClass = (path) =>
-    location.pathname === path ? "nav-item active" : "nav-item";
-
   const handleLogout = async () => {
+    setOpenDropdown(false);
     await logout();
     navigate("/login");
   };
 
   if (!user) return null;
 
+  const menu = [
+    { to: "/admin", label: "Dashboard" },
+    { to: "/admin/users", label: "Users" },
+    { to: "/admin/approvals", label: "Approvals" },
+    { to: "/admin/holidays", label: "Holidays" },
+    { to: "/admin/export", label: "Export" }
+  ];
+
   return (
-    <header className="top-dashboard-header">
-      {/* LEFT NAV */}
-      <nav className="main-nav-links">
-        <Link to="/admin" className={getActiveClass("/admin")}>
-          Dashboard
-        </Link>
+    <header className="nav-root">
+      {/* LEFT LOGO */}
+      <div className="nav-left">
+        <img
+          src="/logo.png"
+          alt="Company Logo"
+          className="nav-logo"
+        />
+      </div>
 
-        <Link to="/admin/users" className={getActiveClass("/admin/users")}>
-          Users
-        </Link>
-
-        <Link
-          to="/admin/approvals"
-          className={getActiveClass("/admin/approvals")}
-        >
-          Approvals
-        </Link>
-
-        <Link
-          to="/admin/holidays"
-          className={getActiveClass("/admin/holidays")}
-        >
-          Holidays
-        </Link>
-
-        <Link
-          to="/admin/export"
-          className={getActiveClass("/admin/export")}
-        >
-          Export
-        </Link>
+      {/* CENTER MENU */}
+      <nav className="nav-menu">
+        {menu.map((item, i) => (
+          <Link
+            key={i}
+            to={item.to}
+            className={`nav-link ${
+              location.pathname === item.to ? "active" : ""
+            }`}
+          >
+            {item.label}
+          </Link>
+        ))}
       </nav>
 
-      {/* RIGHT PROFILE */}
-      <div className="header-info">
-        <div
-          className={`user-profile-widget ${
-            isProfileOpen ? "active" : ""
-          }`}
-          onClick={() => setIsProfileOpen(!isProfileOpen)}
-          ref={dropdownRef}
-        >
-          {/* AVATAR */}
-          <div className="user-avatar">
-            {user.name?.charAt(0).toUpperCase()}
-          </div>
-
-          <span className="user-name">{user.name}</span>
-
-          <ChevronDown
-            size={14}
-            className={`profile-arrow ${
-              isProfileOpen ? "rotate" : ""
-            }`}
-          />
-
-          {isProfileOpen && (
-            <div className="profile-dropdown">
-              <div className="dropdown-header">
-                <span className="d-name">{user.name}</span>
-                <span className="d-role">{user.role}</span>
-              </div>
-
-              <div className="dropdown-divider" />
-
-              <div
-                className="dropdown-item logout"
-                onClick={handleLogout}
-              >
-                <LogOut size={16} /> Logout
-              </div>
-            </div>
-          )}
+      {/* PROFILE */}
+      <div
+        className="nav-profile"
+        ref={dropdownRef}
+        onClick={() => setOpenDropdown(!openDropdown)}
+      >
+        <div className="profile-avatar">
+          {user.name?.charAt(0).toUpperCase()}
         </div>
+
+        <span className="profile-name">{user.name}</span>
+
+        {openDropdown && (
+          <div className="nav-dropdown">
+            <p className="logout">{user.name}</p>
+            <p className="logout">{user.email}</p>
+            <p className="logout" onClick={handleLogout}>
+              Logout
+            </p>
+          </div>
+        )}
       </div>
     </header>
   );

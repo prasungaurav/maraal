@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 const User = require("./models/User");
 
 // ----------------------------
@@ -16,10 +17,19 @@ router.post("/login", async (req, res) => {
   }
 
   try {
-    // 🔥 FIND USER WITHOUT ROLE CHECK
-    const user = await User.findOne({ email, password });
+    // 🔥 FIND USER BY EMAIL ONLY
+    const user = await User.findOne({ email });
 
     if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid Email or Password",
+      });
+    }
+
+    // 🔒 Compare entered password with hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       return res.status(401).json({
         success: false,
         message: "Invalid Email or Password",

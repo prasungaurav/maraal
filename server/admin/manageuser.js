@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 // Middleware: requireLogin
 const requireLogin = (req, res, next) => {
@@ -25,7 +26,7 @@ router.get("/", requireLogin, async (req, res) => {
 router.post("/", requireLogin, async (req, res) => {
     try {
         const { name, email, password, role, biometricId } = req.body;
-
+         const hashedPassword = await bcrypt.hash(password, 10);
         // Validate required fields
         if (!name || !email || !password || !role || !biometricId) {
             return res.status(400).json({ success: false, message: "All fields are required" });
@@ -43,7 +44,7 @@ router.post("/", requireLogin, async (req, res) => {
             return res.status(409).json({ success: false, message: "Biometric ID already exists" });
         }
 
-        const newUser = new User({ name, email, password, role, biometricId });
+        const newUser = new User({ name, email, password: hashedPassword, role, biometricId });
         await newUser.save();
 
         res.status(201).json({ success: true, message: "User added successfully", data: newUser });

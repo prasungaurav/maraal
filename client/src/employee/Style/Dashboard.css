@@ -1,23 +1,26 @@
 /* EmployeeDashboard.css - Professional Modern Theme */
 
 :root {
-    /* PROFESSIONAL COLOR PALETTE */
-    --primary-color: #2e7fcb;    /* Modern Indigo */
-    --primary-hover: #2e7fcb;    /* Darker Indigo for hover */
-    --secondary-accent: #2e7fcb; /* Soft Indigo */
-    
-    --text-dark: #111827;        /* Almost black, softer */
-    --text-gray: #6B7280;        /* Cool gray */
+    /* 🔵 HEADER MATCHING BLUE THEME */
+    --primary-color: #135ccf;        /* Header main blue */
+    --primary-hover: #1f72e6;        /* Header hover blue */
+    --secondary-accent: #1f72e6;
+
+    --text-dark: #111827;
+    --text-gray: #6B7280;
     --text-light: #9CA3AF;
-    
-    --bg-light: #F3F4F6;         /* Cool gray background */
+
+    --bg-light: #F3F4F6;
     --card-bg: #FFFFFF;
-    --border-color: #E5E7EB;     /* Subtle border */
-    
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --border-color: #E5E7EB;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1),
+                 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1),
+                 0 4px 6px -2px rgba(0,0,0,0.05);
 }
+
 
 body {
     background-color: var(--bg-light);
@@ -28,8 +31,8 @@ body {
 }
 
 .dashboard-page-wrapper {
-    padding-top: 50px; 
     padding: 0 40px 40px 40px; /* More breathing room */
+    padding-top: 15px; 
     box-sizing: border-box;
     height: 88vh;
 
@@ -261,7 +264,7 @@ body {
 /* --- History Section --- */
 .history-section {
   width: 100%;
-  padding: 14px 18px;
+  padding: 14px 0px;
   border-radius: 12px;
   font-family: 'Segoe UI', sans-serif;
 }

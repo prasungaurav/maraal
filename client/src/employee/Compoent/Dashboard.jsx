@@ -433,7 +433,7 @@ function EmployeeDashboard() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {recentAttendance.map((log, idx) => (
+                                        {recentAttendance.slice(0, 5).map((log, idx) => (
                                             <tr key={idx}>
                                                 <td className="p-date">{new Date(log.date).toISOString().split('T')[0]}</td>
                                                 <td>{log.inTime ? new Date(log.inTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}</td>
@@ -472,7 +472,7 @@ function EmployeeDashboard() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {recentLeaves.map((leave, idx) => (
+                                        {recentLeaves.slice(0, 5).map((leave, idx) => (
                                             <tr key={idx}>
                                                 <td className="p-type">{leave.type}</td>
                                                 <td>{leave.from}</td>
@@ -501,7 +501,7 @@ function EmployeeDashboard() {
                                     </button>
                                 </div>
                                 <div className="preview-list">
-                                    {upcomingHolidays.map((h, idx) => {
+                                    {upcomingHolidays.slice(0, 3).map((h, idx) => {
                                         const dateObj = new Date(h.date); // Convert string to Date
                                         const day = dateObj.getDate(); // e.g., 25
                                         const month = dateObj.toLocaleString('default', { month: 'short' }); // e.g., Dec

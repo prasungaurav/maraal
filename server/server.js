@@ -57,39 +57,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-// ------------------------------
-// ATTENDANCE FETCH ROUTE
-// ------------------------------
-app.post("/api/attendance/fetch", requireLogin, async (req, res) => {
-  const reader = new BiometricReader(process.env.BIOMETRIC_IP || "192.168.1.199");
 
-  try {
-    await reader.connect();
-    const logs = await reader.getAttendance();
-    await reader.disconnect();
-
-    // Format logs for MongoDB
-    const formattedLogs = logs.map((log) => ({
-      userId: log.id,
-      timestamp: new Date(log.timestamp),
-      status: log.status || "Present",
-    }));
-
-    await Attendance.insertMany(formattedLogs);
-
-    res.json({
-      success: true,
-      message: "Attendance fetched and saved successfully",
-      logs: formattedLogs,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch attendance",
-      error: err.message,
-    });
-  }
-});
 
 // ------------------------------
 // UNIVERSAL AUTH ROUTES

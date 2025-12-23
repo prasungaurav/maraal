@@ -1,254 +1,123 @@
-/* =========================================
-   ROOT VARIABLES
-========================================= */
-:root {
-  --header-height: 70px;
-  --primary-blue: #4f46e5;
-  --primary-light: #e0e7ff;
-  --text-dark: #1e293b;
-  --text-grey: #64748b;
-  --border-color: #e2e8f0;
-  --bg-light: #f8fafc;
-  --hover-bg: #f1f5f9;
+* {
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-/* =========================================
-   HEADER CONTAINER
-========================================= */
-.app-header {
-  height: var(--header-height);
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-color);
+.nav-root {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
-  margin-top: -12vh;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+
+  padding: 0 32px;
+  box-sizing: border-box;
+  z-index: 9999;
+
+  background: linear-gradient(90deg, #135ccf, #1f72e6);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.4);
 }
 
-/* =========================================
-   LEFT SECTION
-========================================= */
-.header-left {
+/* logo */
+.nav-left {
   display: flex;
   align-items: center;
-  gap: 18px;
-  min-width: 280px;
+}
+.nav-logo {
+  height: 35px;
+  width: auto;
+  object-fit: contain;
 }
 
-.menu-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--text-grey);
-  padding: 6px;
-  border-radius: 8px;
-  display: none;
-  transition: background 0.2s, color 0.2s;
-}
-
-.menu-btn:hover {
-  background: var(--hover-bg);
-  color: var(--primary-blue);
-}
-
-.header-brand {
+/* center menu */
+.nav-menu {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.header-brand h2 {
-  color: var(--primary-blue);
-  font-size: 1.45rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 0;
-}
-
-.header-brand .badge {
-  background: #eff6ff;
-  color: var(--primary-blue);
-  font-size: 0.7rem;
-  padding: 2px 9px;
+  padding: 4px;
   border-radius: 999px;
-  font-weight: 700;
-  border: 1px solid #dbeafe;
+  background: rgba(15, 23, 42, 0.15);
 }
 
-/* =========================================
-   CENTER SECTION – NAV BUTTONS
-========================================= */
-.header-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-links {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.nav-btn {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 0.85rem;
+.nav-link {
+  text-decoration: none;
+  color: #e5edff;
+  font-size: 14px;
   font-weight: 500;
-  color: var(--text-dark);
-  cursor: pointer;
-  transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: 0.25s ease;
 }
 
-.nav-btn:hover {
-  background: var(--primary-light);
-  color: var(--primary-blue);
-  border-color: var(--primary-blue);
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.16);
 }
 
-/* =========================================
-   RIGHT SECTION
-========================================= */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-width: 280px;
-  justify-content: flex-end;
+.nav-link.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.35);
 }
 
-/* ICON BUTTON */
-.icon-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  color: var(--text-grey);
-  transition: background 0.2s, color 0.2s;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon-btn:hover {
-  background: var(--hover-bg);
-  color: var(--primary-blue);
-}
-
-/* Notification Dot */
-.notification-dot {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 8px;
-  height: 8px;
-  background: #ef4444;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-}
-
-/* =========================================
-   PROFILE SECTION
-========================================= */
-.profile-wrapper {
-  position: relative;
+/* profile container */
+.nav-profile {
+  position: relative; /* 🔥 dropdown anchor */
   display: flex;
   align-items: center;
   gap: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 6px 14px;
+  border-radius: 999px;
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 10px;
-  transition: background 0.2s;
+  transition: 0.25s ease;
 }
 
-.profile-wrapper:hover {
-  background: var(--hover-bg);
+.nav-profile:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.7);
 }
 
-.avatar-circle {
+/* avatar letter */
+.profile-avatar {
   width: 36px;
   height: 36px;
-  background: var(--primary-light);
-  color: var(--primary-blue);
   border-radius: 50%;
+  background: #1f72e6;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.profile-info .name {
-  font-size: 0.9rem;
+.profile-name {
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-dark);
+  color: #e5edff;
 }
 
-.profile-info .role {
-  font-size: 0.75rem;
-  color: var(--text-grey);
-}
-
-/* =========================================
-   PROFILE DROPDOWN
-========================================= */
-.profile-dropdown {
+/* dropdown */
+.nav-dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 54px;
   right: 0;
   width: 190px;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 8px 0;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
-  z-index: 2000;
-  animation: fadeIn 0.18s ease-in-out;
+  background: #0f172a;
+  border-radius: 14px;
+  padding: 6px 0;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.7);
+  animation: fadeSlide 0.2s ease;
 }
 
-.dropdown-item {
-  padding: 12px 18px;
-  font-size: 14px;
-  color: #111827;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.dropdown-item:hover {
-  background: #f3f4f6;
-}
-
-.dropdown-item.logout {
-  color: #dc2626;
-}
-
-.dropdown-item.logout:hover {
-  background: #fee2e2;
-}
-
-/* =========================================
-   ANIMATION
-========================================= */
-@keyframes fadeIn {
+@keyframes fadeSlide {
   from {
     opacity: 0;
-    transform: translateY(-5px);
+    transform: translateY(-6px);
   }
   to {
     opacity: 1;
@@ -256,24 +125,35 @@
   }
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
-@media (max-width: 768px) {
-  .menu-btn {
-    display: block;
-  }
-
-  .header-center {
-    display: none;
-  }
-
-  .profile-info {
-    display: none;
-  }
-
-  .app-header {
-    padding: 0 16px;
-  }
+.nav-dropdown p {
+  margin: 0;
+  padding: 10px 18px;
+  font-size: 13.5px;
+  color: #e5edff;
+  cursor: pointer;
 }
 
+.nav-dropdown p:hover {
+  background: rgba(148, 163, 184, 0.28);
+}
+
+.nav-dropdown .role {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.logout {
+  color: #f97373;
+}
+
+/* page offset */
+.page-container {
+  padding-top: 90px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+}

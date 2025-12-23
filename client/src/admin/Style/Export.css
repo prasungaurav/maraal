@@ -14,7 +14,7 @@
 .employee-export-page {
   padding: 1.5rem;
   background: var(--bg);
-  margin-top: -6vh;
+  
   min-height: 94vh;
   font-family: 'Inter', system-ui, sans-serif;
 }

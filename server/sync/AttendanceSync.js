@@ -1,74 +1,92 @@
+require("dotenv").config();
+const mongoose = require("mongoose");
 const User = require("../models/User");
 const Attendance = require("../models/Attendance");
-const BiometricReader = require("../reader/reader");
+const ZKLib = require("node-zklib");
 
-const reader = new BiometricReader(
-  process.env.BIOMETRIC_IP || "192.168.1.199"
-);
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected for Attendance Sync"))
+  .catch(err => console.error("MongoDB Connection Error:", err));
+
+// Biometric Reader
+class BiometricReader {
+  constructor(ip, port = 4370, timeout = 5000, delay = 5000) {
+    this.ip = ip;
+    this.port = port;
+    this.timeout = timeout;
+    this.delay = delay;
+  }
+
+  async getAttendance() {
+    const zk = new ZKLib(this.ip, this.port, this.timeout, this.delay);
+    try {
+      await zk.createSocket();
+      console.log("🔌 Biometric connected");
+      const res = await zk.getAttendances();
+      return res?.data || [];
+    } catch (err) {
+      console.error("❌ Device error:", err.message);
+      return [];
+    } finally {
+      try { await zk.disconnect(); console.log("🔌 Biometric disconnected"); } catch(_) {}
+    }
+  }
+}
+
+// Initialize reader
+const reader = new BiometricReader(process.env.BIOMETRIC_IP || "192.168.1.199");
+let lastSyncTime = new Date(0);
+
+// Upsert function (first in, last out)
 async function upsertAttendance(userId, timestamp) {
-  const start = new Date(timestamp);
-  start.setHours(0, 0, 0, 0);
+  const date = new Date(timestamp);
+  const start = new Date(date); start.setHours(0,0,0,0);
+  const end = new Date(date); end.setHours(23,59,59,999);
 
-  const end = new Date(timestamp);
-  end.setHours(23, 59, 59, 999);
-
-  const attendance = await Attendance.findOne({
-    userId,
-    date: { $gte: start, $lte: end },
-  });
+  let attendance = await Attendance.findOne({ userId, date: { $gte: start, $lte: end } });
 
   if (!attendance) {
-    // First punch → IN
+    // First punch of the day → set inTime
     await Attendance.create({
       userId,
-      date: timestamp,
-      inTime: timestamp,
+      date,
+      inTime: date,
+      outTime: null,
       status: "Present",
-      workType: "WFO",
+      workType: "WFO"
     });
-  } else if (!attendance.outTime) {
-    // Second punch → OUT
-    attendance.outTime = timestamp;
+  } else {
+    // Update outTime to latest punch
+    attendance.outTime = date;
     await attendance.save();
   }
 }
 
+// Sync function
 async function syncAttendance() {
   try {
-    console.log("🔁 Checking biometric logs...");
-
     const logs = await reader.getAttendance();
+    if (!Array.isArray(logs) || logs.length === 0) return;
 
-    if (!Array.isArray(logs) || logs.length === 0) {
-      console.log("ℹ️ No logs received");
-      return;
-    }
+    const newLogs = logs.filter(l => new Date(l.recordTime) > lastSyncTime);
 
-    for (const log of logs) {
-      const user = await User.findOne({
-        biometricId: log.deviceUserId,
-      });
-      if (user){
-        console.log(log);
-      }
-      if (!user) {
-        console.warn(
-          `⚠️ No user for biometricId ${log.deviceUserId}`
-        );
-        continue;
-      }
+    for (const log of newLogs) {
+      const user = await User.findOne({ biometricId: log.deviceUserId });
+      if (!user) continue;
 
       await upsertAttendance(user._id, log.recordTime);
+      lastSyncTime = new Date(log.recordTime);
     }
 
-    console.log("✅ Biometric sync completed");
+    if (newLogs.length) console.log(`✅ Synced ${newLogs.length} logs`);
   } catch (err) {
-    console.error("❌ Biometric sync error FULL:", err);
+    console.error("❌ Sync error:", err);
   }
 }
 
-// Run immediately
+// Run immediately and then every 1 minute
 syncAttendance();
-
-// Run every 1 minute
 setInterval(syncAttendance, 60 * 1000);
+
+module.exports = {};

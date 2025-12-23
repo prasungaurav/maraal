@@ -13,10 +13,9 @@
 }
 
 .attendance-page-wrapper {
-    margin-top:-4vh;
     padding: 0px 30px 20px 30px; 
     background-color: var(--bg-light);
-    height: 92vh; 
+    height: 88vh; 
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 260px 280px 1fr; 
